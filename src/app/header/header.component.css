@@ -3,23 +3,17 @@
 }*/
 
 .bg-bcpColor{
-    background-color: #1E1F26 !important;
+    background-color: #012d74 !important;
+}
+
+.bcp-header{
+    width: 100%;
+    z-index: 8888889;
 }
 
 .bcp_logo img {
     height: 30px;
     margin-top: 0px !important;
+    margin-left: 5%;
     float: left;
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #sidebarCollapse span {
-        display: none;
-    }
 }

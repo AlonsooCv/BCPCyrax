@@ -1,6 +1,28 @@
 #content {
     width: 100%;
-    padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
+    margin-top: 3%;
+    text-align: center;
+}
+.example-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1%;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+.form-full-width{
+   min-width: 50px;
+   max-width: 400px;
+   width: 100%;
+   display: inline-block;
+}
+
+.input-full-width{
+    width: 100%;
 }

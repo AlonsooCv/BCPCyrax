@@ -1,27 +1,42 @@
-<div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <!-- <div class="sidebar-header text-center">
-                <h3>Cyrax Suite</h3>
-            </div>
-            -->
-            <ul class="list-unstyled components"> 
-                <li routerLinkActive="active">
-                    <a [routerLink]="['/pin-resetting']">Pin Resetting</a>
-                </li>
-                <li routerLinkActive="active">
-                    <a [routerLink]="['/defer-quota']">Defer Quota</a>
-                </li>
-                <!-- <li>
-                    <a href="#">Send EECC</a>
-                </li>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container bg-bcpColor">
+        <a class="navbar-brand" href="#">
+            <img
+                src="https://www.viabcp.com/wcm/connect/975e78fb-d9ae-4c79-a559-36546697b247/logo-bcp.svg?MOD=AJPERES&CACHEID=ROOTWORKSPACE-975e78fb-d9ae-4c79-a559-36546697b247-mjYtvHn">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
                 <li>
-                    <a href="#">Card Lock</a>
+                    <p class="nav-link"  id="navbarDropdown" 
+                         aria-haspopup="true" aria-expanded="false">
+                        Bienvenido Alonso Carruitero
+                    </p>
                 </li>
-                <li>
-                    <a href="#">Abroad Enable/Disable</a>
-                </li>-->
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Procesos
+                    </a>
+                    <!-- Here's the magic. Add the .animate and .slide-in classes to your .dropdown-menu and you're all set! -->
+                    <div class="dropdown-menu dropdown-menu-right animate slideIn" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/pin-resetting']">Reseteo de
+                            Clave</a>
+                        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/defer-quota']">Diferir en
+                            Cuotas</a>
+                        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/send-eecc']">Envío de
+                            EECC</a>
+                    </div>
+                </li>
             </ul>
-        </nav>
+        </div>
     </div>
+</nav>
+
+
 

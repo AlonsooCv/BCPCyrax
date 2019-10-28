@@ -10,6 +10,15 @@ import { FooterComponent } from './footer/footer.component';
 import { NavComponent } from './nav/nav.component';
 import { PinResettingComponent } from './pin-resetting/pin-resetting.component';
 import { DeferQuotaComponent } from './defer-quota/defer-quota.component';
+import { SendEECCComponent } from './send-eecc/send-eecc.component';
+import { CardLockComponent } from './card-lock/card-lock.component';
+
+//Design Modules
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule,MatOptionModule, MatSelectModule, MatIconModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -18,11 +27,21 @@ import { DeferQuotaComponent } from './defer-quota/defer-quota.component';
     FooterComponent,
     NavComponent,
     PinResettingComponent,
-    DeferQuotaComponent
+    DeferQuotaComponent,
+    SendEECCComponent,
+    CardLockComponent
   ],
   imports: [
     BrowserModule,
-    app_routing
+    app_routing,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
