@@ -12,8 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li>
-                    <p class="nav-link"  id="navbarDropdown" 
-                         aria-haspopup="true" aria-expanded="false">
+                    <p class="nav-link welcome" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
                         Bienvenido Alonso Carruitero
                     </p>
                 </li>
@@ -31,12 +30,19 @@
                             Cuotas</a>
                         <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/send-eecc']">Envío de
                             EECC</a>
+                        <a class="dropdown-item" routerLinkActive="active"
+                            [routerLink]="['/card-lock']">Bloqueo/Desbloqueo de TC/TD</a>
+                        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/abroad-enable']">Compras en
+                            el exterior</a>
+                        <a class="dropdown-item" routerLinkActive="active"
+                            [routerLink]="['/disenrollment-insurance']">Desafiliación Seguro</a>
+                        <a class="dropdown-item" routerLinkActive="active"
+                            [routerLink]="['/cancelation-tc']">Cancelación TC</a>
+                        <a class="dropdown-item" routerLinkActive="active" [routerLink]="['/activation-tc']">Activación
+                            TC</a>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-
-
-

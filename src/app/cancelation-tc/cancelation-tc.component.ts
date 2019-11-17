@@ -1,37 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ProcessType } from '../models/processType.model';
 import { DocType } from '../models/docType.model';
-import { CardType } from '../models/cardType.model';
 
 @Component({
-  selector: 'app-send-eecc',
-  templateUrl: './send-eecc.component.html',
-  styleUrls: ['./send-eecc.component.css']
+  selector: 'app-cancelation-tc',
+  templateUrl: './cancelation-tc.component.html',
+  styleUrls: ['./cancelation-tc.component.css']
 })
-export class SendEECCComponent implements OnInit {
+export class CancelationTcComponent implements OnInit {
 
   /** Fill Combo box with data */
-  processTypes: ProcessType[] = [
-    { id: 1, name: 'Visa cuotas' },
-    { id: 2, name: 'Disef cuotas' }
-  ];
-
   docTypes: DocType[] = [
     { id: 1, name: 'DNI' },
     { id: 3, name: 'Carné de Extranjería' },
     { id: 4, name: 'Pasaporte' },
     { id: 6, name: 'RUC' }
   ];
-
-  cardTypes: CardType[] = [
-    { id: 1, name: 'Tarjeta de Débito' },
-    { id: 2, name: 'Tarjeta de Crédito' }
-  ];
-
-  /**Get Date */
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
 
   /**Validators */
   docNumberDNIPattern = /^\D*\d{8}$/;
@@ -43,6 +27,9 @@ export class SendEECCComponent implements OnInit {
 
   cardNumberPattern = /[0-9]{3,4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/;
   cardNumber = new FormControl('', [Validators.required, Validators.pattern(this.cardNumberPattern)]);
+
+  accountNumberPattern = /[0-9]{3,4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/;
+  accountNumber = new FormControl('', [Validators.required, Validators.pattern(this.accountNumberPattern)]);
 
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   email = new FormControl('', [Validators.pattern(this.emailPattern)]);
@@ -61,7 +48,7 @@ export class SendEECCComponent implements OnInit {
       this.docNumberDNI.hasError('pattern') ? 'Not a valid DNI' :
         '';
   }
-  
+
   getErrorMessageDocNumberCE() {
     return this.docNumber.hasError('required') ? 'You must enter a value' :
       '';
@@ -81,6 +68,12 @@ export class SendEECCComponent implements OnInit {
   getErrorMessageCardNumber() {
     return this.cardNumber.hasError('required') ? 'You must enter a value' :
       this.cardNumber.hasError('pattern') ? 'Not a valid card number' :
+        '';
+  }
+
+  getErrorMessageAccountNumber() {
+    return this.accountNumber.hasError('required') ? 'You must enter a value' :
+      this.accountNumber.hasError('pattern') ? 'Not a valid card number' :
         '';
   }
 
@@ -105,10 +98,9 @@ export class SendEECCComponent implements OnInit {
             '';
   }
 
+  constructor() { }
+
   ngOnInit() {
-
   }
+
 }
-
-
-

@@ -1,3 +1,159 @@
+<h3>Bloqueo/Desbloqueo de TD/TC</h3>
+
 <div id="content">
-<p>card-lock works!</p>
+    <form class="form-full-width">
+        <div class="form-row">
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Tipo Documento" [(ngModel)]="docType" [ngModelOptions]="{standalone: true}"
+                        required>
+                        <mat-option *ngFor="let x of docTypes" [value]="x.id">{{x.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="cardType == 2">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Código Agencia" [(ngModel)]="agency" [ngModelOptions]="{standalone: true}"
+                        required>
+                        <mat-option *ngFor="let x of agencies" [value]="x.name">{{x.id}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="cardType != 2">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Código Agencia" [(ngModel)]="agency" [ngModelOptions]="{standalone: true}"
+                        required disabled>
+                        <mat-option *ngFor="let x of agencies" [value]="x.name">{{x.id}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <!--BEGIN - Document Number-->
+            <div class="form-group" *ngIf="docType == 1">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Número de Documento" [formControl]="docNumberDNI" required>
+                    <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberDNI()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="docType == 3">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Número de Documento" [formControl]="docNumber" required>
+                    <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberCE()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="docType == 4">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Número de Documento" [formControl]="docNumber" required>
+                    <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberPasaporte()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="docType == 6">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Número de Documento" [formControl]="docNumberRUC" required>
+                    <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberRUC()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <!-- END - Document Number-->
+            <div class="form-group">
+                <mat-form-field class="col-md-12  input-full-width">
+                    <input matInput placeholder="Dirección Agencia" value="{{agency}}" disabled>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Tipo Tarjeta" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}"
+                        required>
+                        <mat-option *ngFor="let x of cardTypes" [value]="x.id">{{x.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="blockType != 3">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Nombre de tercero">
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf=" blockType == 3">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Nombre de tercero" disabled>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Número de Tarjeta" [formControl]="cardNumber" required>
+                    <mat-error *ngIf="cardNumber.invalid">{{getErrorMessageCardNumber()}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Correo electrónico" [formControl]="email">
+                    <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+                </mat-form-field>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Tipo Bloqueo" [(ngModel)]="blockType" [ngModelOptions]="{standalone: true}"
+                        required>
+                        <mat-option *ngFor="let x of blockTypes" [value]="x.id">{{x.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Celular">
+                </mat-form-field>
+            </div>
+        </div>
+        <!--BEGIN - Reason Lock-->
+        <div class="form-row">
+            <div class="form-group" *ngIf="blockType != 3">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Motivo Bloqueo" [(ngModel)]="reasonLock"
+                        [ngModelOptions]="{standalone: true}" required>
+                        <mat-option *ngFor="let x of reasonLocks" [value]="x.id">{{x.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group" *ngIf="blockType == 3">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Motivo Bloqueo" [(ngModel)]="reasonLock"
+                        [ngModelOptions]="{standalone: true}" required disabled>
+                        <mat-option *ngFor="let x of reasonLocks" [value]="x.id">{{x.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <!--END - Reason Lock-->
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Matrícula Asesor" [formControl]="asesorCode" required>
+                    <mat-error *ngIf="asesorCode.invalid">{{getErrorMessageAsesorCode()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <mat-select placeholder="Tipo de constancia envío" [(ngModel)]="sendingType"
+                        [ngModelOptions]="{standalone: true}" required>
+                        <mat-option *ngFor="let x of sendingTypes" [value]="x.id">{{x.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="form-group">
+                <mat-form-field class="col-md-12 input-full-width">
+                    <input matInput placeholder="Matrícula Supervisor" [formControl]="supervisorCode" required>
+                    <mat-error *ngIf="supervisorCode.invalid">{{getErrorMessageSupervisorCode()}}</mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <button mat-raised-button class="form-control" color="primary">Enviar solicitud</button>
+
+    </form>
 </div>

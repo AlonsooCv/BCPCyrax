@@ -1,32 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ProcessType } from '../models/processType.model';
 import { DocType } from '../models/docType.model';
-import { CardType } from '../models/cardType.model';
+import { Card } from '../models/card.model';
 
 @Component({
-  selector: 'app-send-eecc',
-  templateUrl: './send-eecc.component.html',
-  styleUrls: ['./send-eecc.component.css']
+  selector: 'app-abroad-enable',
+  templateUrl: './abroad-enable.component.html',
+  styleUrls: ['./abroad-enable.component.css']
 })
-export class SendEECCComponent implements OnInit {
+export class AbroadEnableComponent implements OnInit {
 
   /** Fill Combo box with data */
-  processTypes: ProcessType[] = [
-    { id: 1, name: 'Visa cuotas' },
-    { id: 2, name: 'Disef cuotas' }
-  ];
-
   docTypes: DocType[] = [
     { id: 1, name: 'DNI' },
     { id: 3, name: 'Carné de Extranjería' },
     { id: 4, name: 'Pasaporte' },
     { id: 6, name: 'RUC' }
-  ];
-
-  cardTypes: CardType[] = [
-    { id: 1, name: 'Tarjeta de Débito' },
-    { id: 2, name: 'Tarjeta de Crédito' }
   ];
 
   /**Get Date */
@@ -61,7 +50,7 @@ export class SendEECCComponent implements OnInit {
       this.docNumberDNI.hasError('pattern') ? 'Not a valid DNI' :
         '';
   }
-  
+
   getErrorMessageDocNumberCE() {
     return this.docNumber.hasError('required') ? 'You must enter a value' :
       '';
@@ -105,10 +94,22 @@ export class SendEECCComponent implements OnInit {
             '';
   }
 
+  card = new Card()
+  dataarray = [];
+
+  constructor() { }
+
   ngOnInit() {
-
+    this.dataarray.push(this.card);
   }
+
+  addCardNumber() {
+    this.card = new Card()
+    this.dataarray.push(this.card);
+  }
+
+  removeCardNumber(index) {
+    this.dataarray.splice(index);
+  }
+
 }
-
-
-

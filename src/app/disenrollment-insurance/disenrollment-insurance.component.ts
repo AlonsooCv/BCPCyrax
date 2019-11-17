@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { ProcessType } from '../models/processType.model';
 import { DocType } from '../models/docType.model';
-import { CardType } from '../models/cardType.model';
+import { InsuranceType } from '../models/insuranceType.model';
+import { RefundType } from '../models/refundType.model';
+import { ReasonDisenrollment } from '../models/reasonDisenrollment.model';
 
 @Component({
-  selector: 'app-send-eecc',
-  templateUrl: './send-eecc.component.html',
-  styleUrls: ['./send-eecc.component.css']
+  selector: 'app-disenrollment-insurance',
+  templateUrl: './disenrollment-insurance.component.html',
+  styleUrls: ['./disenrollment-insurance.component.css']
 })
-export class SendEECCComponent implements OnInit {
+export class DisenrollmentInsuranceComponent implements OnInit {
 
   /** Fill Combo box with data */
-  processTypes: ProcessType[] = [
-    { id: 1, name: 'Visa cuotas' },
-    { id: 2, name: 'Disef cuotas' }
-  ];
-
   docTypes: DocType[] = [
     { id: 1, name: 'DNI' },
     { id: 3, name: 'Carné de Extranjería' },
@@ -24,14 +20,26 @@ export class SendEECCComponent implements OnInit {
     { id: 6, name: 'RUC' }
   ];
 
-  cardTypes: CardType[] = [
-    { id: 1, name: 'Tarjeta de Débito' },
-    { id: 2, name: 'Tarjeta de Crédito' }
+  insuranceTypes: InsuranceType[] = [
+    { id: 1, name: 'Seguro múltiple' },
+    { id: 2, name: 'Seguro protección de tarjetas' }
   ];
 
-  /**Get Date */
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
+  refundTypes: RefundType[] = [
+    { id: 1, name: 'Desafiliación con devolución previo análisis' },
+    { id: 2, name: 'Desafiliación con devolución automática' },
+    { id: 3, name: 'Desafiliación sin devolución' }
+  ];
+
+  reasonsDisenrollment: ReasonDisenrollment[] = [
+    { id: 1, name: 'No desea el seguro' },
+    { id: 2, name: 'No reconoce los seguros/Mala venta' },
+    { id: 3, name: 'Cliente canceló cuenta o tarjeta' },
+    { id: 4, name: 'No recibió la póliza' },
+    { id: 5, name: 'Por viaje' },
+    { id: 6, name: 'Problemas económicos' },
+    { id: 7, name: 'Mejora de coberturas/Tiene seguro' }
+  ];
 
   /**Validators */
   docNumberDNIPattern = /^\D*\d{8}$/;
@@ -40,9 +48,6 @@ export class SendEECCComponent implements OnInit {
   docNumber = new FormControl('', [Validators.required]);
   docNumberDNI = new FormControl('', [Validators.required, Validators.pattern(this.docNumberDNIPattern)]);
   docNumberRUC = new FormControl('', [Validators.required, Validators.pattern(this.docNumberRUCPattern)]);
-
-  cardNumberPattern = /[0-9]{3,4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/;
-  cardNumber = new FormControl('', [Validators.required, Validators.pattern(this.cardNumberPattern)]);
 
   emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
   email = new FormControl('', [Validators.pattern(this.emailPattern)]);
@@ -61,7 +66,7 @@ export class SendEECCComponent implements OnInit {
       this.docNumberDNI.hasError('pattern') ? 'Not a valid DNI' :
         '';
   }
-  
+
   getErrorMessageDocNumberCE() {
     return this.docNumber.hasError('required') ? 'You must enter a value' :
       '';
@@ -75,12 +80,6 @@ export class SendEECCComponent implements OnInit {
   getErrorMessageDocNumberRUC() {
     return this.docNumber.hasError('required') ? 'You must enter a value' :
       this.docNumber.hasError('pattern') ? 'Not a valid RUC' :
-        '';
-  }
-
-  getErrorMessageCardNumber() {
-    return this.cardNumber.hasError('required') ? 'You must enter a value' :
-      this.cardNumber.hasError('pattern') ? 'Not a valid card number' :
         '';
   }
 
@@ -105,10 +104,9 @@ export class SendEECCComponent implements OnInit {
             '';
   }
 
+  constructor() { }
+
   ngOnInit() {
-
   }
+
 }
-
-
-

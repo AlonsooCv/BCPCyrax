@@ -1,6 +1,6 @@
 <div id="content">
 
-    <h3>Envío de EECC</h3>
+    <h3>Compras en el Exterior</h3>
 
     <form class="form-full-width">
         <div class="form-group">
@@ -11,7 +11,7 @@
                 </mat-select>
             </mat-form-field>
         </div>
-        <!--BEGIN - Document Number-->
+        <!--BEGIN - Document Number -->
         <div class="form-group" *ngIf="docType == 1">
             <mat-form-field class="input-full-width">
                 <input matInput placeholder="Número de Documento" [formControl]="docNumberDNI" required>
@@ -36,20 +36,18 @@
                 <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberRUC()}}</mat-error>
             </mat-form-field>
         </div>
-        <!-- END - Document Number-->
-        <div class="form-group">
-            <mat-form-field class="input-full-width">
-                <mat-select placeholder="Tipo Tarjeta" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}"
-                    required>
-                    <mat-option *ngFor="let x of cardTypes" [value]="x.id">{{x.name}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="input-full-width">
-                <input matInput placeholder="Número de Tarjeta" [formControl]="cardNumber" required>
-                <mat-error *ngIf="cardNumber.invalid">{{getErrorMessageCardNumber()}}</mat-error>
-            </mat-form-field>
+        <!-- END - Document Number -->
+        <div class="form-column" *ngFor="let obj of dataarray; let i = index">
+            <div class="form-group">
+                <mat-form-field class="input-full-width">
+                    <input matInput placeholder="Número de Tarjeta" name="name{{i}}" [(ngModel)]="obj.cardNumber"
+                        [formControl]="cardNumber" required>
+                    <mat-error *ngIf="cardNumber.invalid">{{getErrorMessageCardNumber()}}</mat-error>
+                    <mat-icon *ngIf="i < 3" (click)="addCardNumber(i)" matSuffix>add</mat-icon>
+                    <mat-icon *ngIf="i > 0" (click)="removeCardNumber(i)" matSuffix>remove</mat-icon>
+                </mat-form-field>
+
+            </div>
         </div>
         <div class="form-group">
             <mat-form-field class="input-full-width">
@@ -61,9 +59,15 @@
         </div>
         <div class="form-group">
             <mat-form-field class="input-full-width">
-                <input matInput [matDatepicker]="picker2" placeholder="Fecha fin" [formControl]="serializedDate" required>
+                <input matInput [matDatepicker]="picker2" placeholder="Fecha fin" [formControl]="serializedDate"
+                    required>
                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                 <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Comentario">
             </mat-form-field>
         </div>
         <div class="form-group">
@@ -89,6 +93,9 @@
                 <mat-error *ngIf="supervisorCode.invalid">{{getErrorMessageSupervisorCode()}}</mat-error>
             </mat-form-field>
         </div>
+
+
+
         <button mat-raised-button class="form-control" color="primary">Enviar solicitud</button>
     </form>
 </div>

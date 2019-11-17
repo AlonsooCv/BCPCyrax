@@ -5,6 +5,11 @@ import { PinResettingComponent } from './pin-resetting/pin-resetting.component';
 import { DeferQuotaComponent } from './defer-quota/defer-quota.component';
 import { SendEECCComponent } from './send-eecc/send-eecc.component';
 import { CardLockComponent } from './card-lock/card-lock.component';
+import { AbroadEnableComponent } from './abroad-enable/abroad-enable.component';
+import { ActivationTcComponent } from './activation-tc/activation-tc.component';
+import { CancelationTcComponent } from './cancelation-tc/cancelation-tc.component';
+import { DisenrollmentInsuranceComponent } from "./disenrollment-insurance/disenrollment-insurance.component";
+import { PrincipalComponent } from "./principal/principal.component";
 /*import { PageNotFoundComponent } from './';*/
 
 const routes: Routes = [
@@ -12,11 +17,16 @@ const routes: Routes = [
     { path: 'defer-quota', component: DeferQuotaComponent },
     { path: 'send-eecc', component: SendEECCComponent },
     { path: 'card-lock', component: CardLockComponent },
+    { path: 'disenrollment-insurance', component: DisenrollmentInsuranceComponent },
+    { path: 'cancelation-tc', component: CancelationTcComponent },
+    { path: 'activation-tc', component: ActivationTcComponent },
+    { path: 'abroad-enable', component: AbroadEnableComponent },
+    { path: '**', component: PrincipalComponent }
     /*{ path: '**', component: PageNotFoundComponent },*/
 
     //{ path: 'path/:routeParam', component: MyComponent },
     //{ path: 'staticPath', component: ... },
-    //{ path: '**', component: ... },
+    
     //{ path: 'oldPath', redirectTo: '/staticPath' },
     //{ path: ..., component: ..., data: { message: 'Custom' }
 ];

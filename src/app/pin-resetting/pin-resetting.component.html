@@ -2,56 +2,71 @@
 
     <h3>Reseteo de Clave</h3>
 
-    <form class="form-full-width">
-        <div class="example-container">
-            <div class="form-group">
-                <mat-form-field class="input-full-width">
-                    <mat-select placeholder="Tipo Documento">
-                        <mat-option value="1">DNI</mat-option>
-                        <mat-option value="3">Carné de Extranjería</mat-option>
-                        <mat-option value="4">Pasaporte</mat-option>
-                        <mat-option value="6">RUC</mat-option>
-                    </mat-select>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field class="input-full-width">
-                    <input matInput placeholder="Número de Documento" [formControl]="docNumber" required>
-                    <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumber()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field class="input-full-width">
-                    <input matInput placeholder="Número de Tarjeta" [formControl]="cardNumber" required>
-                    <mat-error *ngIf="cardNumber.invalid">{{getErrorMessageCardNumber()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field class="input-full-width">
-                    <input matInput placeholder="Correo electrónico" [formControl]="email">
-                    <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field class="input-full-width">
-                    <input matInput placeholder="Celular">
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field class="input-full-width">
-                    <input matInput placeholder="Matrícula Asesor" [formControl]="asesorCode" required>
-                    <mat-error *ngIf="asesorCode.invalid">{{getErrorMessageAsesorCode()}}</mat-error>
-                </mat-form-field>
-            </div>
-            <div class="form-group">
-                <mat-form-field class="input-full-width">
-                    <input matInput placeholder="Matrícula Supervisor" [formControl]="supervisorCode" required>
-                    <mat-error *ngIf="supervisorCode.invalid">{{getErrorMessageSupervisorCode()}}</mat-error>
-                </mat-form-field>
-            </div>
-
-            <button mat-raised-button class="form-control" color="success">Enviar solicitud</button>
-
+    <form class="form-full-width" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <mat-select placeholder="Tipo Documento" [(ngModel)]="docType" [ngModelOptions]="{standalone: true}"
+                    required>
+                    <mat-option *ngFor="let x of docTypes" [value]="x.id">{{x.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
+        <!--BEGIN - Document Number-->
+        <div class="form-group" *ngIf="docType == 1">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Número de Documento" [formControl]="docNumberDNI" required>
+                <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberDNI()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group" *ngIf="docType == 3">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Número de Documento" [formControl]="docNumber" required>
+                <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberCE()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group" *ngIf="docType == 4">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Número de Documento" [formControl]="docNumber" required>
+                <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberPasaporte()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group" *ngIf="docType == 6">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Número de Documento" [formControl]="docNumberRUC" required>
+                <mat-error *ngIf="docNumber.invalid">{{getErrorMessageDocNumberRUC()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <!-- END - Document Number-->
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Número de Tarjeta" [formControl]="cardNumber" required>
+                <mat-error *ngIf="cardNumber.invalid">{{getErrorMessageCardNumber()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Correo electrónico" [formControl]="email">
+                <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Celular">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Matrícula Asesor" [formControl]="asesorCode" required>
+                <mat-error *ngIf="asesorCode.invalid">{{getErrorMessageAsesorCode()}}</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Matrícula Supervisor" [formControl]="supervisorCode" required>
+                <mat-error *ngIf="supervisorCode.invalid">{{getErrorMessageSupervisorCode()}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <button mat-raised-button class="form-control">Enviar solicitud</button>
     </form>
 </div>

@@ -1,6 +1,6 @@
 <div id="content">
 
-    <h3>Envío de EECC</h3>
+    <h3>Desafiliación de Seguro</h3>
 
     <form class="form-full-width">
         <div class="form-group">
@@ -39,31 +39,31 @@
         <!-- END - Document Number-->
         <div class="form-group">
             <mat-form-field class="input-full-width">
-                <mat-select placeholder="Tipo Tarjeta" [(ngModel)]="cardType" [ngModelOptions]="{standalone: true}"
+                <mat-select placeholder="Tipo Devolución" [(ngModel)]="refundType" [ngModelOptions]="{standalone: true}"
                     required>
-                    <mat-option *ngFor="let x of cardTypes" [value]="x.id">{{x.name}}</mat-option>
+                    <mat-option *ngFor="let x of refundTypes" [value]="x.id">{{x.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>
         <div class="form-group">
             <mat-form-field class="input-full-width">
-                <input matInput placeholder="Número de Tarjeta" [formControl]="cardNumber" required>
-                <mat-error *ngIf="cardNumber.invalid">{{getErrorMessageCardNumber()}}</mat-error>
-            </mat-form-field>
-        </div>
-        <div class="form-group">
-            <mat-form-field class="input-full-width">
-                <input matInput [matDatepicker]="picker" placeholder="Fecha inicio" [formControl]="serializedDate"
+                <mat-select placeholder="Seguro" [(ngModel)]="insuranceType" [ngModelOptions]="{standalone: true}"
                     required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
+                    <mat-option *ngFor="let x of insuranceTypes" [value]="x.id">{{x.name}}</mat-option>
+                </mat-select>
             </mat-form-field>
         </div>
         <div class="form-group">
             <mat-form-field class="input-full-width">
-                <input matInput [matDatepicker]="picker2" placeholder="Fecha fin" [formControl]="serializedDate" required>
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
+                <mat-select placeholder="Motivo" [(ngModel)]="reasonDisenrollment" [ngModelOptions]="{standalone: true}"
+                    required>
+                    <mat-option *ngFor="let x of reasonsDisenrollment" [value]="x.id">{{x.name}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field class="input-full-width">
+                <input matInput placeholder="Observaciones">
             </mat-form-field>
         </div>
         <div class="form-group">
